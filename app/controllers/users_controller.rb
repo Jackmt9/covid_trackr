@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params)
-        byebug
+        # byebug
         if user.valid?
             token = encode_token({user_id: user.id})
             render json: { user: user, token: token}, status: :created
@@ -28,9 +28,6 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user.bookmarks.each do |bookmark|
-            bookmark.destroy
-        end
         @user.destroy
         render json: {message: "User destroyed."}
     end
@@ -38,7 +35,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :username, :email, :subscribed?, :password)
+        params.permit(:first_name, :last_name, :username, :email, :subscribed?, :password)
     end
 
 end
