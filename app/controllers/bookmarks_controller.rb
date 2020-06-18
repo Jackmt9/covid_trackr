@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
     def create
-        bookmark = Bookmark.create(user: @user, country_id: params[:country_id])
+        bookmark = Bookmark.find_or_create_by(user: @user, country_id: params[:country_id])
         if bookmark
             render json: { message: "Bookmark created." }
         else
@@ -9,12 +9,16 @@ class BookmarksController < ApplicationController
     end
 
     def destroy
-        bookmark = Bookmark.find(params[:id])
+        bookmark = Bookmark.find_by(country_id: params[:id])
         if bookmark
             bookmark.destroy
             render json: { message: "Bookmark destroyed." }
         else
             render json: { message: "Bookmark not found." }
         end
+    end
+
+    def index
+        render json: {bookmarks: @user.bookmarks}
     end
 end

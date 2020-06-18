@@ -12,7 +12,12 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        render json: @user
+    end
+
     def login
+        # byebug
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             token = encode_token({user_id: user.id})
@@ -23,6 +28,7 @@ class UsersController < ApplicationController
     end
 
     def update
+        # byebug
         @user.update(email: params[:email])
         render json: {message: "Email updated."}
     end
