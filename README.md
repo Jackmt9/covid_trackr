@@ -32,8 +32,9 @@ To start the backend server:
 3. Be sure you have a [Postgresql](https://www.postgresql.org/) server running.
 4. Create your database table by running ```$ rails db:create```
 5. Migrate to set up your database schema by running ```$ rails db:migrate```.
-6. Run ```$ rails server``` to start your server. 
-7. Open your browser and navigate to http://localhost:3000/ to access the backend routes or follow the [frontend README](https://github.com/Jackmt9/covid_trackr-frontend/blob/master/README.md).
+6. Seed the data by running ```$ rails db:seed```.
+7. Run ```$ rails server``` to start your server. 
+8. Open your browser and navigate to http://localhost:3000/ to access the backend routes or follow the [frontend README](https://github.com/Jackmt9/covid_trackr-frontend/blob/master/README.md).
 
 ### Tools
 - Ruby on Rails
